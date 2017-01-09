@@ -9,7 +9,7 @@ require('./models/companyModel');
 require('./models/employeeModel');
 require('./models/managerModel');
 
-var routesAPI = require('./routes/index');
+var routesAPI = require('routes/index');
 
 var app = express();
 app.use(function(req, res, next) {

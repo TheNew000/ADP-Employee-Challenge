@@ -1,0 +1,68 @@
+{
+  "name": "angular-route",
+  "version": "1.6.1",
+  "description": "AngularJS router module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "router",
+    "client-side"
+  ],
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "homepage": "http://angularjs.org",
+  "jspm": {
+    "shim": {
+      "angular-route": {
+        "deps": [
+          "angular"
+        ]
+      }
+    }
+  },
+  "gitHead": "409c45cfc589d66457f7cbb11aa1fc47f8dbbf78",
+  "_id": "angular-route@1.6.1",
+  "_shasum": "6d1087f4d6a1422026f91a13be86adc8f1d20ec7",
+  "_from": "angular-route@latest",
+  "_npmVersion": "3.10.9",
+  "_nodeVersion": "6.9.2",
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "6d1087f4d6a1422026f91a13be86adc8f1d20ec7",
+    "tarball": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/angular-route-1.6.1.tgz_1482490958956_0.47315023210830986"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.1.tgz"
+}
