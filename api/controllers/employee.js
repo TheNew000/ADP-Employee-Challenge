@@ -12,104 +12,104 @@ module.exports.createEmp = function (req, res) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
-    } else { $or: [{a: 1}, {b: 1}]
+    } else {
         Employee.findOne({ 
-                $or: [
-                    {$and: [{'fullName': req.body.fullName}, {'email': req.body.email}] }, 
-                    {$and: [{'fullName': req.body.fullName}, {'phoneNumber': req.body.phoneNumber}]}
-                ], function (err, employeeInfo) {
-            if (employeeInfo) {
-                sendJSONresponse(res, 500, {
-                    "message": "Employee already registered"
-                });
-            } else {
-                var passed = validate.validate([
-                    {
-                        value: req.body.fullname,
-                        checks: {
-                            required: true,
-                            minlength: 3,
-                            maxlength: 30,
-                            regex: /^[a-zA-Z0-9_\s]*$/
-                        }
-                    },
-                    {
-                        value: req.body.email,
-                        checks: {
-                            required: true,
-                            minlength: 3,
-                            maxlength: 100,
-                            regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                        }
-                    },
-                    {
-                        value: req.body.state,
-                        checks: {
-                            required: true,
-                            matches: ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-                            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-                            'WY').split(' ')
-                        }
-                    },
-                    {
-                        value: req.body.phoneNumber,
-                        checks: {
-                            required: true,
-                            minlength: 10,
-                            maxlength: 10,
-                            regex: /^((([0-9]{3}))|([0-9]{3}))[-\s\.]?[0-9]{3}[-\s\.]?[0‌​-9]{4}$/
-                        }
-                    },
-                    {
-                        value: req.body.zipCode,
-                        checks: {
-                            required: true,
-                            minlength: 5,
-                            maxlength: 5,
-                            regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
-                        }
-                    },
-                    {
-                        value: req.body.address,
-                        checks: {
-                            required: true,
-                            minlength: 5,
-                            maxlength: 100,
-                            regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
-                        }
-                    }
-                ]);
-
-                if (passed) {
-                    var employee = new Employee();
-                    employee.fullName = req.body.fullName;
-                    employee.department = req.body.department;
-                    employee.title = req.body.title;
-                    employee.address = req.body.address;
-                    employee.state = req.body.state;
-                    employee.zipCode = req.body.zipCode;
-                    employee.email = req.body.email;
-                    employee.phoneNumber = req.body.phoneNumber;
-                    employee.compID = req.params.id;
-                    employee.save(function (err, document) {
-                        if (err) {
-                            console.log(err);
-                            sendJSONresponse(res, 500, {
-                                "message": "Server Error Nooooo!!!"
-                            });
-                        } else {
-                            console.log(document);
-                            Company.update({'companyName': req.body.companyName}, {$push: {employee: employee._id}}).exec(
-                                sendJSONresponse(res, 200, {
-                                    'message': 'Employee Successfully Added!'
-                                })
-                            );
-                        }
+            $or: [
+                {$and: [{'fullName': req.body.fullName}, {'email': req.body.email}] }, 
+                {$and: [{'fullName': req.body.fullName}, {'phoneNumber': req.body.phoneNumber}]}
+            ], function (err, employeeInfo) {
+                if (employeeInfo) {
+                    sendJSONresponse(res, 500, {
+                        "message": "Employee already registered"
                     });
                 } else {
-                    sendJSONresponse(res, 401, {
-                        message: "Invalid input. Please don't mess with Angular's form validation."
-                    })
+                    var passed = validate.validate([
+                        {
+                            value: req.body.fullname,
+                            checks: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 30,
+                                regex: /^[a-zA-Z0-9_\s]*$/
+                            }
+                        },
+                        {
+                            value: req.body.email,
+                            checks: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 100,
+                                regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                            }
+                        },
+                        {
+                            value: req.body.state,
+                            checks: {
+                                required: true,
+                                matches: ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+                                'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+                                'WY').split(' ')
+                            }
+                        },
+                        {
+                            value: req.body.phoneNumber,
+                            checks: {
+                                required: true,
+                                minlength: 10,
+                                maxlength: 10,
+                                regex: /^((([0-9]{3}))|([0-9]{3}))[-\s\.]?[0-9]{3}[-\s\.]?[0‌​-9]{4}$/
+                            }
+                        },
+                        {
+                            value: req.body.zipCode,
+                            checks: {
+                                required: true,
+                                minlength: 5,
+                                maxlength: 5,
+                                regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
+                            }
+                        },
+                        {
+                            value: req.body.address,
+                            checks: {
+                                required: true,
+                                minlength: 5,
+                                maxlength: 100,
+                                regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
+                            }
+                        }
+                    ]);
+                    if (passed) {
+                        var employee = new Employee();
+                        employee.fullName = req.body.fullName;
+                        employee.department = req.body.department;
+                        employee.title = req.body.title;
+                        employee.address = req.body.address;
+                        employee.state = req.body.state;
+                        employee.zipCode = req.body.zipCode;
+                        employee.email = req.body.email;
+                        employee.phoneNumber = req.body.phoneNumber;
+                        employee.compID = req.params.id;
+                        employee.save(function (err, document) {
+                            if (err) {
+                                console.log(err);
+                                sendJSONresponse(res, 500, {
+                                    "message": "Server Error Nooooo!!!"
+                                });
+                            } else {
+                                console.log(document);
+                                Company.update({'companyName': req.body.companyName}, {$push: {employee: employee._id}}).exec(
+                                    sendJSONresponse(res, 200, {
+                                        'message': 'Employee Successfully Added!'
+                                    })
+                                );
+                            }
+                        });
+                    } else {
+                        sendJSONresponse(res, 401, {
+                            message: "Invalid input. Please don't mess with Angular's form validation."
+                        });
+                    }
                 }
             }
         });

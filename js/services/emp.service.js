@@ -1,15 +1,17 @@
 (function () {
     empService.$inject = ['$http', '$route'];
     function empService($http, $route){
-        
+
         this.login = function (user, callback) {
-            return $http.post('/login', user).then(function success(response) {
+            return $http.post('/api/login', user).then(function success(response) {
                 $route.reload();
                 callback(response);
             }, function error(response) {
                 callback(response);
-            })
+            });
         };
+
+        // return {login: this.login};
     }
 
     angular

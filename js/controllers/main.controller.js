@@ -4,14 +4,13 @@
     angular
         .module('employeeApp')
         .controller('gcCtrl', ['$scope', '$http', 'empService', function($scope, $http, empService) {
-            $scope.logIn = () => {
+
+            $scope.logIn = function() {
                 empService.login({
                     username: $scope.username,
                     password: $scope.password
-                }, (response) => {
-                    
-                }, (response) => {
-
+                }, function(employees){
+                    console.log(employees);
                 });
             }
 
