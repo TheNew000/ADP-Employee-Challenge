@@ -9,9 +9,9 @@
         index: '@'
       },
       templateUrl: "templates/card-directive.html",
-      controller: UserCardCtrl
+      controller: EmpCardCtrl
     });
 
-  function UserCardCtrl(){};
+  function EmpCardCtrl(){};
 })();
 

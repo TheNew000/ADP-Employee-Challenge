@@ -41,6 +41,23 @@ h5{
     min-height: 50vh;
 }
 
+.black-btn {
+    background-color: #24272B;
+}
+
+.black-btn:hover{
+    background-color: #4f5256;
+    color: #DBC68C;
+}
+.black-btn:active{
+    background-color: #4f5256;
+    color: #DBC68C;
+}
+.black-btn:focus{
+    background-color: #4f5256;
+    color: #DBC68C;
+}
+
 .yellow-font {
     color: #F7CE5B;
 }

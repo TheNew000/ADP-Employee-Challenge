@@ -1,12 +1,20 @@
-// import angular from 'angular';
-
-// This service makes the $http.get() requests to the github API and returns an array filled with the first 10 users to appear based on the user input.
 (function () {
+    empService.$inject = ['$http', '$route'];
+    function empService($http, $route){
+        
+        this.login = function (user, callback) {
+            return $http.post('/login', user).then(function success(response) {
+                $route.reload();
+                callback(response);
+            }, function error(response) {
+                callback(response);
+            })
+        };
+    }
+
     angular
         .module('employeeApp')
-        .service('userService', function($http, $q) {
-            return
-        });
+        .service('empService', empService);
 })();
 
 // app.factory('SonService', function ($http, $q) {
