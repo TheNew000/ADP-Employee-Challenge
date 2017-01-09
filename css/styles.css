@@ -1,0 +1,59 @@
+h5:first-of-type{
+    margin-top: 0px;
+}
+
+h5{
+    text-decoration: underline;
+}
+
+.left{
+    padding-left: 0px;
+}
+
+.right{
+    overflow: auto;
+    height: 100vh;
+}
+
+.yellow {
+    background-color: #F7CE5B;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.yellow-btn {
+   background-color: #F7CE5B; 
+}
+
+.yellow-btn:hover{
+    background-color: #DBC68C;
+}
+.yellow-btn:active{
+    background-color: #DBC68C;
+}
+.yellow-btn:focus{
+    background-color: #DBC68C;
+}
+
+.black {
+    background-color: #24272B;
+    min-height: 50vh;
+}
+
+.yellow-font {
+    color: #F7CE5B;
+}
+
+.grey-font{
+    color: #DDDDDD;
+}
+
+.form-margin{
+    margin-top: 5%;
+}
+
+.avatar{
+    max-width: 150px;
+    max-height: 150px;
+}
