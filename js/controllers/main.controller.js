@@ -12,7 +12,7 @@
                 }, function(employees){
                     if(employees.data.status === 200) $scope.ifLoggedIn = true;
                     $scope.salutation = employees.data.message;
-                    console.log(employees.data.message);
+                    console.log(employees.data.user);
                 });
             }
 

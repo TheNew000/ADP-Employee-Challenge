@@ -107,18 +107,20 @@ module.exports.login = function (req, res) {
             "message": "Invalid Password"
         });
     } else {
-        Manager.findOne({'userName': req.body.userName}, function (err, user){
+        Manager.find({'userName': req.body.userName}, function (err, user){
             if (err){
                 sendJSONresponse(res, 500, {
                     "message": "Server Error Nooooo!!!"
                 });
-            } else if (user){
-                sendJSONresponse(res, 200, {
-                    'message': 'Welcome Back!'
+            } else if (user.length === 0){
+                sendJSONresponse(res, 400, {
+                    'message': 'Please check your username!',
+                    'user': user
                 });
             }else{
-                sendJSONresponse(res, 400, {
-                    'message': 'Please check your username!'
+                sendJSONresponse(res, 200, {
+                    'message': 'Welcome Back!',
+                    'user': user
                 });
             }
         });

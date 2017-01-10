@@ -13,7 +13,7 @@ module.exports.createEmp = function (req, res) {
             "message": "All fields required"
         });
     } else {
-        Employee.findOne({ 
+        Employee.find({ 
             $or: [
                 {$and: [{'fullName': req.body.fullName}, {'email': req.body.email}] }, 
                 {$and: [{'fullName': req.body.fullName}, {'phoneNumber': req.body.phoneNumber}]}
