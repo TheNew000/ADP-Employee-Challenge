@@ -3,15 +3,13 @@
     function empService($http, $route){
 
         this.login = function (user, callback) {
-            return $http.post('/api/login', user).then(function success(response) {
+            return $http.post('http://localhost:3000/api/login', user).then(function success(response) {
                 $route.reload();
                 callback(response);
             }, function error(response) {
                 callback(response);
             });
         };
-
-        // return {login: this.login};
     }
 
     angular

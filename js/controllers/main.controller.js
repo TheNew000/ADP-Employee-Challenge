@@ -4,13 +4,15 @@
     angular
         .module('employeeApp')
         .controller('gcCtrl', ['$scope', '$http', 'empService', function($scope, $http, empService) {
-
+            $scope.ifLoggedIn = false;
             $scope.logIn = function() {
                 empService.login({
-                    username: $scope.username,
+                    userName: $scope.userName,
                     password: $scope.password
                 }, function(employees){
-                    console.log(employees);
+                    if(employees.data.status === 200) $scope.ifLoggedIn = true;
+                    $scope.salutation = employees.data.message;
+                    console.log(employees.data.message);
                 });
             }
 

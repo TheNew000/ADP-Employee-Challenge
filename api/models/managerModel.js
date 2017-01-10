@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var managerSchema = new Schema({
-    companyName: String,
     compID: {
            type: Schema.Types.ObjectId, ref:'Company'
         },
