@@ -1,15 +1,48 @@
 (function () {
     empService.$inject = ['$http', '$route'];
     function empService($http, $route){
-
+        //Login Authentication Route
         this.login = function (user, callback) {
             return $http.post('http://localhost:3000/api/login', user).then(function success(response) {
                 $route.reload();
                 callback(response);
+                console.log(response);
             }, function error(response) {
                 callback(response);
             });
         };
+        //RESTFUL Employee Index Route
+        this.getAllEmps = function (emps, callback){
+            return $http.get('http://localhost:3000/api/employees', emps).then(function success(response) {
+                $route.reload();
+                callback(response);
+                console.log(response);
+            }, function error(response) {
+                callback(response);
+            });
+        }
+
+        //RESTFUL New Employee Route
+        this.newEmp = function (emp, callback){
+            return $http.post('http://localhost:3000/api/employees/new', emp).then(function success(response) {
+                $route.reload();
+                callback(response);
+                console.log(response);
+            }, function error(response) {
+                callback(response);
+            });
+        }
+        
+        //RESTFUL New Employee Route
+        this.newEmp = function (emp, callback){
+            return $http.post('http://localhost:3000/api/employees/new', emp).then(function success(response) {
+                $route.reload();
+                callback(response);
+                console.log(response);
+            }, function error(response) {
+                callback(response);
+            });
+        }
     }
 
     angular

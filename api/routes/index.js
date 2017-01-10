@@ -10,11 +10,11 @@ var employee = require('../controllers/employee');
 // router.post('/register', authentication.register);
 router.post('/login', authentication.login);
 
-router.post('/create_emp', employee.createEmp);
+router.post('/employees/new', employee.newEmp);
 router.put('/update_emp/:id', employee.editEmp);
 router.delete('/remove_emp/:id', employee.removeEmp);
 
-router.get('/find_emp', employee.getEmp);
-router.get('/get_all_emps', employee.getAllEmps);
+router.get('/find_emp', employee.findEmp);
+router.get('/employees', employee.getAllEmps);
 
 module.exports = router;

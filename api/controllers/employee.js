@@ -1,72 +1,43 @@
 var mongoose = require('mongoose');
 var Employee = mongoose.model('Employee');
 var Company = mongoose.model('Company');
+var validator = require('../utils/validate');
+
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
     res.json(content);
 };
 
-module.exports.createEmp = function (req, res) {
-    if (!req.body.fullName || !req.body.department || !req.body.title || !req.body.address || !req.body.state || !req.body.zipCode || !req.body.email || !req.body.phoneNumber) {
+module.exports.newEmp = function (req, res) {
+    if (!req.body.empName || !req.body.department || !req.body.title || !req.body.address || !req.body.city || !req.body.state || !req.body.zipCode || !req.body.email || !req.body.phoneNumber) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
     } else {
         Employee.find({ 
             $or: [
-                {$and: [{'fullName': req.body.fullName}, {'email': req.body.email}] }, 
-                {$and: [{'fullName': req.body.fullName}, {'phoneNumber': req.body.phoneNumber}]}
-            ], function (err, employeeInfo) {
-                if (employeeInfo) {
+                {$and: [{'empName': req.body.empName}, {'email': req.body.email}] }, 
+                {$and: [{'empName': req.body.empName}, {'phoneNumber': req.body.phoneNumber}] }
+            ]}
+            , function (err, employee) {
+                if (err){
+                    sendJSONresponse(res, 400, {
+                        "message": err
+                    });
+                }else if (employee.length > 0) {
                     sendJSONresponse(res, 500, {
                         "message": "Employee already registered"
                     });
                 } else {
-                    var passed = validate.validate([
+                    var passed = validator.validate([
                         {
-                            value: req.body.fullname,
+                            value: req.body.empName,
                             checks: {
                                 required: true,
                                 minlength: 3,
                                 maxlength: 30,
-                                regex: /^[a-zA-Z0-9_\s]*$/
-                            }
-                        },
-                        {
-                            value: req.body.email,
-                            checks: {
-                                required: true,
-                                minlength: 3,
-                                maxlength: 100,
-                                regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                            }
-                        },
-                        {
-                            value: req.body.state,
-                            checks: {
-                                required: true,
-                                matches: ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-                                'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-                                'WY').split(' ')
-                            }
-                        },
-                        {
-                            value: req.body.phoneNumber,
-                            checks: {
-                                required: true,
-                                minlength: 10,
-                                maxlength: 10,
-                                regex: /^((([0-9]{3}))|([0-9]{3}))[-\s\.]?[0-9]{3}[-\s\.]?[0‌​-9]{4}$/
-                            }
-                        },
-                        {
-                            value: req.body.zipCode,
-                            checks: {
-                                required: true,
-                                minlength: 5,
-                                maxlength: 5,
-                                regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
+                                regex: /^[a-zA-Z_\s]*$/
                             }
                         },
                         {
@@ -75,9 +46,54 @@ module.exports.createEmp = function (req, res) {
                                 required: true,
                                 minlength: 5,
                                 maxlength: 100,
-                                regex: /(^\d{5}$)|(^\d{5}-\d{4}$)/
+                                regex: /^[a-zA-Z0-9_\s]*$/
+                            }
+                        },
+                        {
+                            value: req.body.city,
+                            checks: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 30,
+                                regex: /^[a-zA-Z0-9_\s]*$/
+                            }
+                        },
+                        {
+                            value: req.body.state.abbrev,
+                            checks: {
+                                required: true,
+                                matches: ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+                                'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+                                'WY').split(' ')
+                            }
+                        },
+                        {
+                            value: req.body.zipCode,
+                            checks: {
+                                required: true,
+                                minlength: 5,
+                                maxlength: 12,
+                                regex: /^[0-9_\s]*$/
+                            }
+                        },
+                        {
+                            value: req.body.phoneNumber,
+                            checks: {
+                                required: true,
+                                minlength: 10,
+                                maxlength: 20
+                            }
+                        },
+                        {
+                            value: req.body.email,
+                            checks: {
+                                required: true,
+                                minlength: 3,
+                                maxlength: 100,
+                                regex: /^.+@.+\..+$/
                             }
                         }
+                        
                     ]);
                     if (passed) {
                         var employee = new Employee();
@@ -85,7 +101,7 @@ module.exports.createEmp = function (req, res) {
                         employee.department = req.body.department;
                         employee.title = req.body.title;
                         employee.address = req.body.address;
-                        employee.state = req.body.state;
+                        employee.state = req.body.state.abbrev;
                         employee.zipCode = req.body.zipCode;
                         employee.email = req.body.email;
                         employee.phoneNumber = req.body.phoneNumber;
@@ -107,24 +123,30 @@ module.exports.createEmp = function (req, res) {
                         });
                     } else {
                         sendJSONresponse(res, 401, {
-                            message: "Invalid input. Please don't mess with Angular's form validation."
+                            'message': "Invalid input. Please don't mess with Angular's form validation."
                         });
                     }
                 }
             }
-        });
+        );
     }
 };
 
 module.exports.getAllEmps = function (req, res) {
-    Company.find({'companyName': req.params.id}).populate({path: 'employees'}).exec(function (err, category) {
-        sendJSONresponse(res, 200, category);
+    Company.find({}).populate({path: 'employees'}).exec(function (err, emps) {
+        sendJSONresponse(res, 200, emps);
+    });
+};
+
+module.exports.findEmp = function (req, res) {
+    Employee.find({'empName': {$regex: /'^'+ req.body.userInput +'$'/i }}).sort( { empName: -1 } ).exec(function (err, emp) {
+        sendJSONresponse(res, 200, emp);
     });
 };
 
 module.exports.getEmp = function (req, res) {
-    Employee.find({'fullName': req.body.input}).exec(function (err, category) {
-        sendJSONresponse(res, 200, category);
+    Employee.find({'empName': req.body.input}).exec(function (err, emp) {
+        sendJSONresponse(res, 200, emp);
     });
 };
 

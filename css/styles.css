@@ -2,12 +2,17 @@ h5:first-of-type{
     margin-top: 0px;
 }
 
+h5{
+    text-decoration: underline;
+}
+
 h4{
     margin-top: 0px;
 }
 
-h5{
-    text-decoration: underline;
+h3{
+    color: #b7a77c;
+    font-weight: bold;
 }
 
 .left{
@@ -21,9 +26,10 @@ h5{
 
 .yellow {
     background-color: #F7CE5B;
-    min-height: 50vh;
+    height: 50vh;
     display: flex;
     align-items: center;
+    overflow: auto;
 }
 
 .yellow-btn {
@@ -42,11 +48,12 @@ h5{
 
 .black {
     background-color: #24272B;
-    min-height: 50vh;
+    height: 50vh;
 }
 
 .black-btn {
     background-color: #24272B;
+    margin-bottom: 15px;
 }
 
 .black-btn:hover{
@@ -70,11 +77,10 @@ h5{
     color: #DDDDDD;
 }
 
-.form-margin{
-    margin-top: 5%;
+.half-height{
+    height: 50vh;
 }
 
-.avatar{
-    max-width: 150px;
-    max-height: 150px;
+.form-margin{
+    margin-top: 5%;
 }
