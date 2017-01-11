@@ -28,9 +28,15 @@
             }
 
             $scope.newEmp = function(){
-                empService.newEmp($scope.emp, function(employee){
+                empService.newEmp($scope.emp, function(emp){
                     $scope.emp = {};
-                    $scope.results.push(employee);
+                    $scope.results.push(emp);
+                });
+            }
+
+            $scope.findEmp = function(){
+                empService.findEmp({userInput: $scope.userInput}, function(emps){
+                    console.log(emps);
                 });
             }
 

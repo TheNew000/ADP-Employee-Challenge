@@ -137,7 +137,6 @@ module.exports.getAllEmps = function (req, res) {
         if (err){
             console.log(err);
         }else{
-            console.log(emps);
             sendJSONresponse(res, 200, emps); 
         }
         
@@ -148,13 +147,18 @@ module.exports.getAllEmps = function (req, res) {
 };
 
 module.exports.findEmp = function (req, res) {
-    Employee.find({'empName': {$regex: /'^'+ req.body.userInput +'$'/i }}).sort( { empName: 1 } ).exec(function (err, emp) {
-        sendJSONresponse(res, 200, emp);
+    Employee.find({'empName': {$regex: '^' + req.body.userInput, $options: 'i'} }).exec(function (err, emp) {
+        if (err){
+            console.log(err);
+        }else{
+            sendJSONresponse(res, 200, emp);
+        }
     });
 };
 
 module.exports.getEmp = function (req, res) {
-    Employee.find({'empName': req.body.input}).exec(function (err, emp) {
+    console.log(req.body.userInput);
+    Employee.find({'empName': req.body.userInput}).exec(function (err, emp) {
         sendJSONresponse(res, 200, emp);
     });
 };

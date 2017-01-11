@@ -14,7 +14,7 @@ router.post('/employees/new', employee.newEmp);
 router.put('/update_emp/:id', employee.editEmp);
 router.delete('/remove_emp/:id', employee.removeEmp);
 
-router.get('/find_emp', employee.findEmp);
+router.post('/employees/find_emp', employee.findEmp);
 router.get('/employees', employee.getAllEmps);
 
 module.exports = router;
