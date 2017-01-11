@@ -1,60 +1,42 @@
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
+{ 
+    "_id" : ObjectId("587557b4a724d9209eed9eb4"), 
+    "phoneNumber" : "8989898989", 
+    "email" : "ham@bone.com", 
+    "zipCode" : "30082", 
+    "state" : "GA", 
+    "address" : "555 Hotdog Rd", 
+    "title" : "yioyioioyoiy", 
+    "department" : "yioyoiyyoi", 
+    "genesis" : ISODate("2017-01-10T21:52:52.127+0000"), 
+    "__v" : NumberInt(0), 
+    "empName" : "Yioy yioy", 
+    "comp_ID" : ObjectId("5875766400d6af01176212ce")
 }
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
+{ 
+    "_id" : ObjectId("58755e519e6c80230db51d87"), 
+    "phoneNumber" : "7897897890", 
+    "email" : "kim@long.com", 
+    "zipCode" : "30666", 
+    "state" : "GA", 
+    "address" : "15 Hamhock Lane", 
+    "title" : "Manager", 
+    "department" : "Sales", 
+    "genesis" : ISODate("2017-01-10T22:21:05.206+0000"), 
+    "__v" : NumberInt(0), 
+    "empName" : "Kim Long", 
+    "comp_ID" : ObjectId("5875765600d6af01176212cc")
 }
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
-}
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
-}
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
-}
-{
-    "fullName": "",
-    "department": "",
-    "title": "",
-    "address": "",
-    "state": "",
-    "zipCode": 30082,
-    "email": "",
-    "phoneNumber": 1234567890
+{ 
+    "_id" : ObjectId("58755f139e6c80230db51d88"), 
+    "phoneNumber" : "8908908907", 
+    "email" : "ham@hock.com", 
+    "zipCode" : "30099", 
+    "state" : "GA", 
+    "address" : "67 Hambone Ct", 
+    "title" : "Master", 
+    "department" : "Hamboning", 
+    "genesis" : ISODate("2017-01-10T22:24:19.708+0000"), 
+    "__v" : NumberInt(0), 
+    "empName" : "Ham Hock", 
+    "comp_ID" : ObjectId("5875763900d6af01176212ca")
 }

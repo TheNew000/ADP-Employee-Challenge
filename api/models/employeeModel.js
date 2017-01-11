@@ -11,7 +11,7 @@ var employeeSchema = new Schema({
 	genesis: { type: Date, default: Date.now },
     email: String,
     phoneNumber: String,
-    compID: {
+    comp_ID: {
            type: Schema.Types.ObjectId, ref:'Company'
         }
 });

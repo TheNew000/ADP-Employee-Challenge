@@ -10,6 +10,6 @@ var companySchema = new Schema({
     zipCode: Number,
     employees: [{type: Schema.Types.ObjectId, ref: 'Employee'}],
     managers: [{type: Schema.Types.ObjectId, ref: 'Manager'}]
-});
+}, { collection: 'company' });
 
 module.exports = mongoose.model('Company', companySchema);

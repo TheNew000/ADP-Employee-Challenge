@@ -119,7 +119,7 @@ module.exports.login = function (req, res) {
                 });
             }else{
                 sendJSONresponse(res, 200, {
-                    'message': 'Welcome Back!',
+                    'message': 'Welcome Back',
                     'user': user
                 });
             }

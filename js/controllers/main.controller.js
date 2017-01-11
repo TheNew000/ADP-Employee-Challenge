@@ -18,19 +18,19 @@
                 }, function(manager){
                     if(manager.status === 200) {
                         $scope.ifLoggedIn = true;
-                        empService.getAllEmps({}, function(employees){
-                            $scope.results = employees;
-                            console.log(employees);
+                        empService.getAllEmps({}, function(emps){
+                            $scope.results = emps.data[0].employees;
+                            console.log(emps.data[0].employees);
                         });
                     }
-                    $scope.salutation = manager.data.message + manager.fullName;
+                    $scope.salutation = manager.data.message + ', ' + manager.data.user[0].userName + '!!!';
                 });
             }
 
             $scope.newEmp = function(){
-                console.log($scope.emp);
                 empService.newEmp($scope.emp, function(employee){
-                    console.log(employee);
+                    $scope.emp = {};
+                    $scope.results.push(employee);
                 });
             }
 

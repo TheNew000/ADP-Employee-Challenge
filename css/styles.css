@@ -15,6 +15,10 @@ h3{
     font-weight: bold;
 }
 
+.greeting{
+    margin-top: 15px;
+}
+
 .left{
     padding-left: 0px;
 }

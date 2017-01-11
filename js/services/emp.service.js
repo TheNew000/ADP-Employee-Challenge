@@ -33,16 +33,16 @@
             });
         }
         
-        //RESTFUL New Employee Route
-        this.newEmp = function (emp, callback){
-            return $http.post('http://localhost:3000/api/employees/new', emp).then(function success(response) {
-                $route.reload();
-                callback(response);
-                console.log(response);
-            }, function error(response) {
-                callback(response);
-            });
-        }
+        // //RESTFUL New Employee Route
+        // this.newEmp = function (emp, callback){
+        //     return $http.post('http://localhost:3000/api/employees/new', emp).then(function success(response) {
+        //         $route.reload();
+        //         callback(response);
+        //         console.log(response);
+        //     }, function error(response) {
+        //         callback(response);
+        //     });
+        // }
     }
 
     angular

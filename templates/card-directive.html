@@ -1,5 +1,5 @@
 <!-- This is the HTML to be populated by the ng-repeat -->
-<h2><span class="grey-font">{{$ctrl.index}}.</span>  {{$ctrl.user.fullName}}</h2>
+<h2><span class="grey-font">{{$ctrl.index}}.</span>  {{$ctrl.user.empName}}</h2>
 <div class="col-md-3">
     <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>
     <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
@@ -8,6 +8,7 @@
     <h5>Department:</h5> {{$ctrl.user.department}}
     <h5>Title:</h5> {{$ctrl.user.title}}
     <h5>Address:</h5> {{$ctrl.user.address}}
+    <h5>City:</h5> {{$ctrl.user.City}}
     <h5>State:</h5> {{$ctrl.user.state}}
     <h5>Zip Code:</h5> {{$ctrl.user.zipCode}}
     <h5>Email:</h5> {{$ctrl.user.email}}

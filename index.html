@@ -19,7 +19,7 @@
                         <button class="btn btn-lg black-btn yellow-font btn-block" type="submit">Login</button>
                     </div>
                 </form>
-                <form ng-submit="newEmp()" ng-show="!ifLoggedIn" name="createEmpForm">
+                <form ng-submit="newEmp()" ng-show="ifLoggedIn" name="createEmpForm">
                     <h3 class="col-xs-offset-2">Enter New Employee</h3>
                     <div class="row">
                         <div class="col-md-6">
@@ -91,8 +91,8 @@
         </div>
         <div class="black">
             <div class="centered">
-                <h4 class="yellow-font col-xs-5">{{salutation}}</h4>
-                <form ng-submit="getEmps()" name="getUserForm" ng-show="ifLoggedIn" class="ng-hide">
+                <h4 class="yellow-font greeting col-xs-9">{{salutation}}</h4>
+                <form ng-submit="findEmps()" name="getUserForm" ng-show="ifLoggedIn" class="ng-hide">
                     <div class="form-group form-margin col-xs-10 col-xs-offset-1">
                         <label class="yellow-font" for="userInput">Employee Search</label>
                         <div class="input-group">

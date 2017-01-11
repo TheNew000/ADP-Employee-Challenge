@@ -97,7 +97,7 @@ module.exports.newEmp = function (req, res) {
                     ]);
                     if (passed) {
                         var employee = new Employee();
-                        employee.fullName = req.body.fullName;
+                        employee.empName = req.body.empName;
                         employee.department = req.body.department;
                         employee.title = req.body.title;
                         employee.address = req.body.address;
@@ -134,12 +134,21 @@ module.exports.newEmp = function (req, res) {
 
 module.exports.getAllEmps = function (req, res) {
     Company.find({}).populate({path: 'employees'}).exec(function (err, emps) {
-        sendJSONresponse(res, 200, emps);
+        if (err){
+            console.log(err);
+        }else{
+            console.log(emps);
+            sendJSONresponse(res, 200, emps); 
+        }
+        
     });
+    // Employee.find({}).sort( { empName: -1 } ).exec(function (err, emp) {
+    //     sendJSONresponse(res, 200, emp);
+    // });
 };
 
 module.exports.findEmp = function (req, res) {
-    Employee.find({'empName': {$regex: /'^'+ req.body.userInput +'$'/i }}).sort( { empName: -1 } ).exec(function (err, emp) {
+    Employee.find({'empName': {$regex: /'^'+ req.body.userInput +'$'/i }}).sort( { empName: 1 } ).exec(function (err, emp) {
         sendJSONresponse(res, 200, emp);
     });
 };
@@ -176,7 +185,7 @@ module.exports.removeEmp = function (req, res) {
 module.exports.editEmp = function (req, res) {
     Employee.findOneAndUpdate({_id: req.params.id}, {
         $set: {
-            fullName: req.body.fullName,
+            empName: req.body.empName,
             department: req.body.department,
             title: req.body.title,
             address: req.body.address,
