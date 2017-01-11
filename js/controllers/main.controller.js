@@ -5,6 +5,7 @@
         .module('employeeApp')
         .controller('gcCtrl', ['$scope', '$http', 'empService', function($scope, $http, empService) {
             $scope.ifLoggedIn = false;
+            $scope.editEmployee = false;
             $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
                 'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
                 'WY').split(' ').map(function (state) {
@@ -28,17 +29,52 @@
             }
 
             $scope.newEmp = function(){
-                empService.newEmp($scope.emp, function(emp){
+                empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
-                    $scope.results.push(emp);
+                    $scope.results.push(newEmp);
                 });
             }
 
             $scope.findEmp = function(){
                 empService.findEmp({userInput: $scope.userInput}, function(emps){
-                    console.log(emps);
+                    $scope.userInput = '';
+                    $scope.results = emps.data;
                 });
             }
+
+            $scope.showEditForm = function(index){
+                this.editEmployee = true;
+                var userState = this.user.state;
+                function findState(state){
+                    return state.abbrev === userState;
+                }
+
+                $scope.selectedOption = $scope.states.find(findState);
+            }
+
+            $scope.editEmp = function(index){
+                this.editEmployee = false;
+                var editedEmp = this.user;
+                $scope.results[index] = editedEmp;
+
+                empService.editEmp(editedEmp, function(emp){
+                    console.log(emp);
+                });
+            }
+            
+            // $scope.saveField = function(index) {
+            //     if ($scope.editing !== false) {
+            //         $scope.appkeys[$scope.editing] = $scope.newField;
+            //         $scope.editing = false;
+            //     }       
+            // };
+            
+            // $scope.cancel = function(index) {
+            //     if ($scope.editing !== false) {
+            //         $scope.appkeys[$scope.editing] = $scope.newField;
+            //         $scope.editing = false;
+            //     }       
+            // };
 
             // $scope.getUsers = () => {
             //    userService.getUsers({userInput: $scope.userInput}, (data) => {

@@ -11,7 +11,7 @@ var employee = require('../controllers/employee');
 router.post('/login', authentication.login);
 
 router.post('/employees/new', employee.newEmp);
-router.put('/update_emp/:id', employee.editEmp);
+router.put('/employees/:id', employee.editEmp);
 router.delete('/remove_emp/:id', employee.removeEmp);
 
 router.post('/employees/find_emp', employee.findEmp);

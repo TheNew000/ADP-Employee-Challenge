@@ -43,6 +43,18 @@
                 callback(response);
             });
         }
+        
+        //RESTFUL Edit Employee Route
+        this.editEmp = function (employee, callback){
+            return $http.put('http://localhost:3000/api/employees/' + employee._id, employee).then(function success(response) {
+                $route.reload();
+                callback(response);
+                console.log(response);
+            }, function error(response) {
+                callback(response);
+            });
+        }
+
     }
 
     angular

@@ -101,6 +101,7 @@ module.exports.newEmp = function (req, res) {
                         employee.department = req.body.department;
                         employee.title = req.body.title;
                         employee.address = req.body.address;
+                        employee.city = req.body.city;
                         employee.state = req.body.state.abbrev;
                         employee.zipCode = req.body.zipCode;
                         employee.email = req.body.email;
@@ -147,7 +148,7 @@ module.exports.getAllEmps = function (req, res) {
 };
 
 module.exports.findEmp = function (req, res) {
-    Employee.find({'empName': {$regex: '^' + req.body.userInput, $options: 'i'} }).exec(function (err, emp) {
+    Employee.find({empName: {$regex: '^' + req.body.userInput, $options: 'i'} }).exec(function (err, emp) {
         if (err){
             console.log(err);
         }else{
@@ -187,24 +188,33 @@ module.exports.removeEmp = function (req, res) {
 };
 
 module.exports.editEmp = function (req, res) {
-    Employee.findOneAndUpdate({_id: req.params.id}, {
+    console.log(req.body);
+    Employee.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.id)}, {
         $set: {
             empName: req.body.empName,
             department: req.body.department,
             title: req.body.title,
             address: req.body.address,
+            city: req.body.city,
             state: req.body.state,
             zipCode: req.body.zipCode,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber
-        }
-    }, function (err, data){
+        },
+    }, {
+        new: true
+    }, function (err, data) {
         if(err){
             console.log(err);
             sendJSONresponse(res, 400, {
                 "message": "There was an error!"
             });
-        } else {
+        } else if(data == null){
+            console.log(data);
+            sendJSONresponse(res, 404, {
+                "message": "User could not be found please try again!"
+            });
+        }else{
             console.log(data);
             sendJSONresponse(res, 200, {
                 "message": "Information was successfully updated!"
