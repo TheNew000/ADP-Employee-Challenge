@@ -20,6 +20,9 @@ Next to start Mongo open a new tab in the same directory and run:
 
 `mongod`
 
+Connect to localhost:27017 for MongoDB using an interface like MongoChef or RoboMongo 
+
+
 To upload some dummy data to play with run these 3 commands:
 
 `mongoimport --db ADP --collection employees --drop --file api/assets/employee-dataset.json`
