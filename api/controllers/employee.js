@@ -106,7 +106,7 @@ module.exports.newEmp = function (req, res) {
                         employee.zipCode = req.body.zipCode;
                         employee.email = req.body.email;
                         employee.phoneNumber = req.body.phoneNumber;
-                        employee.comp_ID = req.body.comp_ID;
+                        employee.comp_ID = req.body.companyID;
                         employee.save(function (err, document) {
                             if (err) {
                                 console.log(err);
@@ -115,7 +115,7 @@ module.exports.newEmp = function (req, res) {
                                 });
                             } else {
                                 console.log('here! ' + document);
-                                Company.update({_id: req.body.comp_ID}, {$push: {employees: employee._id}}).exec(
+                                Company.update({_id: req.body.companyID}, {$push: {employees: employee._id}}).exec(
                                     sendJSONresponse(res, 200, {
                                         'message': 'Employee Successfully Added!'
                                     }));

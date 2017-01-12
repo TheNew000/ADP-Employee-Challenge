@@ -6,6 +6,7 @@
         .controller('gcCtrl', ['$scope', '$http', 'empService', function($scope, $http, empService) {
             $scope.ifLoggedIn = false;
             $scope.editEmployee = false;
+            $scope.emp = {};
             $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
                 'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
                 'WY').split(' ').map(function (state) {
@@ -25,13 +26,14 @@
                             console.log(emps.data[0].employees);
                         });
                     }
-                    $scope.comp_id = manager.data.user[0].comp_id;
+                    $scope.emp.companyID = manager.data.user[0].comp_ID;
+                    console.log($scope.emp.companyID);
                     $scope.salutation = manager.data.message + ', ' + manager.data.user[0].userName + '!!!';
                 });
             }
 
             $scope.newEmp = function(){
-                $scope.emp.comp_ID = $scope.comp_id;
+                console.log($scope.emp);
                 empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
                     newEmp.config.data.state = newEmp.config.data.state.abbrev;
