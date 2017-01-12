@@ -4,6 +4,7 @@ var Employee = mongoose.model('Employee');
 var Manager = mongoose.model('Manager');
 
 var companySchema = new Schema({
+    _id: Schema.Types.ObjectId,
     companyName: String,
     address: String,
     state: String,

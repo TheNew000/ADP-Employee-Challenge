@@ -61,6 +61,7 @@
             $scope.editEmp = function(index){
                 this.editEmployee = false;
                 var editedEmp = this.user;
+                console.log(editedEmp);
                 empService.editEmp(editedEmp, function(emp){
                     console.log(emp);
                     $scope.results[index] = editedEmp;

@@ -2,10 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var employeeSchema = new Schema({
+    _id: Schema.Types.ObjectId,
 	empName: String,
     department: String,
     title: String,
 	address: String,
+    city: String,
     state: String,
     zipCode: String,
 	genesis: { type: Date, default: Date.now },

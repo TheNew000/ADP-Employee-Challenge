@@ -58,3 +58,33 @@
     "__v" : NumberInt(0),
     "comp_ID" : ObjectId("5875765600d6af01176212cc")
 }
+{ 
+    "_id" : ObjectId("5877336c88f95487cc16eb94"), 
+    "comp_ID" : ObjectId("5875765600d6af01176212cc"), 
+    "phoneNumber" : "7876567654", 
+    "email" : "edgar@smith.com", 
+    "zipCode" : "12345", 
+    "state" : "GA", 
+    "city" : "Atlanta", 
+    "address" : "12 Love ln", 
+    "title" : "Lover", 
+    "department" : "Love", 
+    "empName" : "Edgar Smith", 
+    "genesis" : ISODate("2017-01-12T07:42:36.497+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("587797af666b8287fb70c4a0"), 
+    "comp_ID" : ObjectId("5875765600d6af01176212cc"), 
+    "phoneNumber" : "0987678987", 
+    "email" : "mike@chant.com", 
+    "zipCode" : "12345", 
+    "state" : "GA", 
+    "city" : "Douglasvile", 
+    "address" : "12 HR Ln", 
+    "title" : "HR Man", 
+    "department" : "HR", 
+    "empName" : "Mike Chant", 
+    "genesis" : ISODate("2017-01-12T14:50:23.700+0000"), 
+    "__v" : NumberInt(0)
+}

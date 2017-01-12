@@ -10,6 +10,7 @@ var sendJSONresponse = function (res, status, content) {
 };
 
 module.exports.newEmp = function (req, res) {
+    console.log(req.body.companyID);
     if (!req.body.empName || !req.body.department || !req.body.title || !req.body.address || !req.body.city || !req.body.state || !req.body.zipCode || !req.body.email || !req.body.phoneNumber) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
@@ -92,11 +93,23 @@ module.exports.newEmp = function (req, res) {
                                 maxlength: 100,
                                 regex: /^.+@.+\..+$/
                             }
+                        },
+                        {
+                            value: req.body.companyID,
+                            checks: {
+                                required: true,
+                                minlength: 24,
+                                maxlength: 24,
+                                regex: /[0-9a-zA-Z]{24}/
+
+                            }
                         }
                         
                     ]);
                     if (passed) {
+                        console.log('city: ' + req.body.city);
                         var employee = new Employee();
+                        employee._id = mongoose.Types.ObjectId();
                         employee.empName = req.body.empName;
                         employee.department = req.body.department;
                         employee.title = req.body.title;
@@ -106,7 +119,7 @@ module.exports.newEmp = function (req, res) {
                         employee.zipCode = req.body.zipCode;
                         employee.email = req.body.email;
                         employee.phoneNumber = req.body.phoneNumber;
-                        employee.comp_ID = req.body.companyID;
+                        employee.comp_ID = mongoose.Types.ObjectId.createFromHexString(req.body.companyID);
                         employee.save(function (err, document) {
                             if (err) {
                                 console.log(err);
@@ -164,32 +177,33 @@ module.exports.findEmp = function (req, res) {
 // };
 
 module.exports.removeEmp = function (req, res) {
-    console.log("compid: " + req);
-    Company.findById(req.body.comp_ID).exec(function (err, data) {
+    Employee.findOneAndRemove({_id : req.params.id}, function (err, deadUser) {
         if (err) {
-            console.log('Error: ' + err);
+            console.log("FOAR Error: " + err);
         } else {
-            console.log('Data: ' + data);
-            var index = data.employees.indexOf(req.params.id);
-            if (index > -1) {
-                data.employees.splice(index, 1);
-                data.save();
-                findOneAndRemove({'_id' : req.params.id}, function (err, data) {
-                    if (err) {
-                        console.log("FOAR Error: " + err);
-                    } else {
-                        console.log("FOAR DATA: " + data);
+            console.log("FOAR DATA: " + deadUser);
+            Company.findById(deadUser.comp_ID).exec(function (err, data) {
+                if (err) {
+                    console.log('Error: ' + err);
+                } else {
+                    console.log('Data: ' + data);
+                    var index = data.employees.indexOf(deadUser._id);
+                    if (index > -1) {
+                        data.employees.splice(index, 1);
+                        data.save();
                         sendJSONresponse(res, 200, data);                        
+                    } else {
+                        sendJSONresponse(res, 404, {"message": "Something went wrong.  Employee not found in this company"});    
                     }
-                });
-            }
+                }
+            });
         }
     });
 };
 
 module.exports.editEmp = function (req, res) {
-    console.log(req.params.id);
-    Employee.update({_id: req.body._id}, {
+    console.log(req);
+    Employee.update({_id: req.params.id}, {
         $set: {
             empName: req.body.empName,
             department: req.body.department,
