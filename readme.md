@@ -33,3 +33,15 @@ In a new tab cd into ADP-Employee-Challenge/api and run:
 `nodemon`
 
 In your browser window navigate to localhost:8000. Have fun!
+
+## To add next:
+
+Log Out Capability
+
+An exit without saving for edit screen
+
+Handlebars to display the messages the client receives from the server (i.e. "Employee Successfully Added!"  or "User not found/password incorrect", etc)
+
+Bcrypt and get rid of the awful password check
+
+passport for better security/stay logged in
