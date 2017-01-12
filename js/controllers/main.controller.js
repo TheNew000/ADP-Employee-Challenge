@@ -17,6 +17,7 @@
                     userName: $scope.userName,
                     password: $scope.password
                 }, function(manager){
+                    console.log(manager);
                     if(manager.status === 200) {
                         $scope.ifLoggedIn = true;
                         empService.getAllEmps({}, function(emps){
@@ -31,7 +32,8 @@
             $scope.newEmp = function(){
                 empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
-                    $scope.results.push(newEmp);
+                    newEmp.config.data.state = newEmp.config.data.state.abbrev;
+                    $scope.results.push(newEmp.config.data);
                 });
             }
 
@@ -55,11 +57,18 @@
             $scope.editEmp = function(index){
                 this.editEmployee = false;
                 var editedEmp = this.user;
-                $scope.results[index] = editedEmp;
-
                 empService.editEmp(editedEmp, function(emp){
                     console.log(emp);
+                    $scope.results[index] = editedEmp;
                 });
+            }
+
+            $scope.deleteContact = function (index){
+                var destroyContact = this.user;
+                empService.deleteEmp(destroyContact, function(deadEmp){
+                    console.log(deadEmp);
+                    $scope.results.splice(index, 1);
+                })
             }
             
             // $scope.saveField = function(index) {

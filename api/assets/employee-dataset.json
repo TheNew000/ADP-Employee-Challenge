@@ -14,13 +14,28 @@
     "comp_ID" : ObjectId("5875766400d6af01176212ce")
 }
 { 
+    "_id" : ObjectId("58755f139e6c80230db51d88"), 
+    "phoneNumber" : "8908908907", 
+    "email" : "ham@hock.com", 
+    "zipCode" : "30099", 
+    "state" : "GA", 
+    "address" : "67 Hambone Ct", 
+    "city" : "Atlanta", 
+    "title" : "Master", 
+    "department" : "Hamboning", 
+    "genesis" : ISODate("2017-01-10T22:24:19.708+0000"), 
+    "__v" : NumberInt(0), 
+    "comp_ID" : ObjectId("5875763900d6af01176212ca"), 
+    "empName" : "Ham Hock"
+}
+{ 
     "_id" : ObjectId("58755e519e6c80230db51d87"), 
     "phoneNumber" : "7897897890", 
     "email" : "kim@long.com", 
     "zipCode" : "30666", 
     "state" : "GA", 
-    "city" : "Buckhead", 
     "address" : "15 Hamhock Lane", 
+    "city" : "Buckhead", 
     "title" : "Manager", 
     "department" : "Sales", 
     "genesis" : ISODate("2017-01-10T22:21:05.206+0000"), 
@@ -29,17 +44,17 @@
     "comp_ID" : ObjectId("5875765600d6af01176212cc")
 }
 { 
-    "_id" : ObjectId("58755f139e6c80230db51d88"), 
-    "phoneNumber" : "8908908907", 
-    "email" : "ham@hock.com", 
-    "zipCode" : "30099", 
+    "_id" : ObjectId("5876b305164f70580b4b6a8f"), 
+    "phoneNumber" : "8906784563", 
+    "email" : "bo@jangles.com", 
+    "zipCode" : "30056", 
     "state" : "GA", 
-    "city" : "Atlanta", 
-    "address" : "67 Hambone Ct", 
-    "title" : "Master", 
-    "department" : "Hamboning", 
-    "genesis" : ISODate("2017-01-10T22:24:19.708+0000"), 
-    "__v" : NumberInt(0), 
-    "empName" : "Ham Hock", 
-    "comp_ID" : ObjectId("5875763900d6af01176212ca")
+    "city" : "Decatur", 
+    "address" : "678 Burger St", 
+    "title" : "Sales Representative", 
+    "department" : "Sales", 
+    "empName" : "Bobby Bojangles", 
+    "genesis" : ISODate("2017-01-11T22:34:45.880+0000"), 
+    "__v" : NumberInt(0),
+    "comp_ID" : ObjectId("5875765600d6af01176212cc")
 }

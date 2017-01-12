@@ -157,29 +157,30 @@ module.exports.findEmp = function (req, res) {
     });
 };
 
-module.exports.getEmp = function (req, res) {
-    console.log(req.body.userInput);
-    Employee.find({'empName': req.body.userInput}).exec(function (err, emp) {
-        sendJSONresponse(res, 200, emp);
-    });
-};
+// module.exports.getEmp = function (req, res) {
+//     console.log(req.body.userInput);
+//     Employee.find({'empName': req.body.userInput}).exec(function (err, emp) {
+//         sendJSONresponse(res, 200, emp);
+//     });
+// };
 
 module.exports.removeEmp = function (req, res) {
-    Company.findById(req.body.compID).exec(function (err, data) {
+    console.log("compid: " + req);
+    Company.findById(req.body.comp_ID).exec(function (err, data) {
         if (err) {
-            console.log(err);
+            console.log('Error: ' + err);
         } else {
+            console.log('Data: ' + data);
             var index = data.employees.indexOf(req.params.id);
             if (index > -1) {
                 data.employees.splice(index, 1);
                 data.save();
-                Employee.find().remove({_id: req.params.id}).exec(function (err, count) {
+                findOneAndRemove({'_id' : req.params.id}, function (err, data) {
                     if (err) {
-                        console.log(err);
+                        console.log("FOAR Error: " + err);
                     } else {
-                        sendJSONresponse(res, 200, {
-                            'message': count.result.n + ' employee TERMINATED!!'
-                        });
+                        console.log("FOAR DATA: " + data);
+                        sendJSONresponse(res, 200, data);                        
                     }
                 });
             }
@@ -188,8 +189,11 @@ module.exports.removeEmp = function (req, res) {
 };
 
 module.exports.editEmp = function (req, res) {
-    console.log(req.body);
-    Employee.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.params.id)}, {
+    console.log(req.params.id);
+    var ham = mongoose.Types.ObjectId.createFromHexString(req.params.id);
+    // var ham = mongoose.mongo.ObjectId(req.params.id);
+    console.log(ham);
+    Employee.findOneAndUpdate({_id: req.body._id}, {
         $set: {
             empName: req.body.empName,
             department: req.body.department,
@@ -200,10 +204,8 @@ module.exports.editEmp = function (req, res) {
             zipCode: req.body.zipCode,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber
-        },
-    }, {
-        new: true
-    }, function (err, data) {
+        }
+    }, {new: true}, function (err, data) {
         if(err){
             console.log(err);
             sendJSONresponse(res, 400, {

@@ -12,7 +12,7 @@ router.post('/login', authentication.login);
 
 router.post('/employees/new', employee.newEmp);
 router.put('/employees/:id', employee.editEmp);
-router.delete('/remove_emp/:id', employee.removeEmp);
+router.delete('/employees/:id', employee.removeEmp);
 
 router.post('/employees/find_emp', employee.findEmp);
 router.get('/employees', employee.getAllEmps);

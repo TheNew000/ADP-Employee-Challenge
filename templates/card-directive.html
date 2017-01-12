@@ -3,7 +3,7 @@
     <h2><span class="grey-font">{{$ctrl.index}}.</span>  {{$ctrl.user.empName}}</h2>
     <div class="col-md-3">
         <button ng-click="$parent.showEditForm()" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-        <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+        <button class="btn btn-danger btn-xs" ng-click="$parent.deleteContact($parent.index)"><span class="glyphicon glyphicon-trash"></span></button>
     </div>
     <div class="caption col-md-8">
         <div class="row">
