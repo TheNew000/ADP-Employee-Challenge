@@ -1,5 +1,7 @@
 #ADP Coding Challenge!
 
+![Screen Shot](../master/css/img/screen_shot.png "An exact replica!")
+
 ###Try it yourself!
 
 cd into the directory:
