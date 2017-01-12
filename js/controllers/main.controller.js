@@ -25,11 +25,13 @@
                             console.log(emps.data[0].employees);
                         });
                     }
+                    $scope.comp_id = manager.data.user[0].comp_id;
                     $scope.salutation = manager.data.message + ', ' + manager.data.user[0].userName + '!!!';
                 });
             }
 
             $scope.newEmp = function(){
+                $scope.emp.comp_ID = $scope.comp_id;
                 empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
                     newEmp.config.data.state = newEmp.config.data.state.abbrev;

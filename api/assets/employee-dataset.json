@@ -11,7 +11,7 @@
     "genesis" : ISODate("2017-01-10T21:52:52.127+0000"), 
     "__v" : NumberInt(0), 
     "empName" : "Yioy yioy", 
-    "comp_ID" : ObjectId("5875766400d6af01176212ce")
+    "comp_ID" : ObjectId("5875765600d6af01176212cc")
 }
 { 
     "_id" : ObjectId("58755f139e6c80230db51d88"), 
@@ -25,7 +25,7 @@
     "department" : "Hamboning", 
     "genesis" : ISODate("2017-01-10T22:24:19.708+0000"), 
     "__v" : NumberInt(0), 
-    "comp_ID" : ObjectId("5875763900d6af01176212ca"), 
+    "comp_ID" : ObjectId("5875765600d6af01176212cc"), 
     "empName" : "Ham Hock"
 }
 { 

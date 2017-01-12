@@ -106,7 +106,7 @@ module.exports.newEmp = function (req, res) {
                         employee.zipCode = req.body.zipCode;
                         employee.email = req.body.email;
                         employee.phoneNumber = req.body.phoneNumber;
-                        employee.compID = req.params.id;
+                        employee.comp_ID = req.body.comp_ID;
                         employee.save(function (err, document) {
                             if (err) {
                                 console.log(err);
@@ -114,12 +114,11 @@ module.exports.newEmp = function (req, res) {
                                     "message": "Server Error Nooooo!!!"
                                 });
                             } else {
-                                console.log(document);
-                                Company.update({'companyName': req.body.companyName}, {$push: {employee: employee._id}}).exec(
+                                console.log('here! ' + document);
+                                Company.update({_id: req.body.comp_ID}, {$push: {employees: employee._id}}).exec(
                                     sendJSONresponse(res, 200, {
                                         'message': 'Employee Successfully Added!'
-                                    })
-                                );
+                                    }));
                             }
                         });
                     } else {
@@ -190,10 +189,7 @@ module.exports.removeEmp = function (req, res) {
 
 module.exports.editEmp = function (req, res) {
     console.log(req.params.id);
-    var ham = mongoose.Types.ObjectId.createFromHexString(req.params.id);
-    // var ham = mongoose.mongo.ObjectId(req.params.id);
-    console.log(ham);
-    Employee.findOneAndUpdate({_id: req.body._id}, {
+    Employee.update({_id: req.body._id}, {
         $set: {
             empName: req.body.empName,
             department: req.body.department,
@@ -205,22 +201,9 @@ module.exports.editEmp = function (req, res) {
             email: req.body.email,
             phoneNumber: req.body.phoneNumber
         }
-    }, {new: true}, function (err, data) {
-        if(err){
-            console.log(err);
-            sendJSONresponse(res, 400, {
-                "message": "There was an error!"
-            });
-        } else if(data == null){
-            console.log(data);
-            sendJSONresponse(res, 404, {
-                "message": "User could not be found please try again!"
-            });
-        }else{
-            console.log(data);
-            sendJSONresponse(res, 200, {
-                "message": "Information was successfully updated!"
-            });
-        }
-    });
+    }).exec(
+        sendJSONresponse(res, 200, {
+            "message": "Employee was successfully updated!"
+        })
+    );
 };
