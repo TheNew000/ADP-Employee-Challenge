@@ -34,6 +34,10 @@ In a new tab cd into ADP-Employee-Challenge/api and run:
 
 In your browser window navigate to localhost:8000. Have fun!
 
+Login: thenew000
+
+Password: hambone
+
 ## To add next:
 
 Log Out Capability
