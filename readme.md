@@ -16,7 +16,7 @@ Run this command to start the application on localhost:8000:
 
 `node server`
 
-Next to start Mongo run:
+Next to start Mongo open a new tab in the same directory and run:
 
 `mongod`
 
