@@ -12,6 +12,7 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.6.1",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.2",
     "bootstrap": "^3.3.7",
     "connect": "^3.5.0",

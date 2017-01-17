@@ -120,17 +120,18 @@ module.exports.newEmp = function (req, res) {
                         employee.email = req.body.email;
                         employee.phoneNumber = req.body.phoneNumber;
                         employee.comp_ID = mongoose.Types.ObjectId.createFromHexString(req.body.companyID);
-                        employee.save(function (err, document) {
+                        employee.save(function (err, newEmployee) {
                             if (err) {
                                 console.log(err);
                                 sendJSONresponse(res, 500, {
                                     "message": "Server Error Nooooo!!!"
                                 });
                             } else {
-                                console.log('here! ' + document);
-                                Company.update({_id: req.body.companyID}, {$push: {employees: employee._id}}).exec(
+                                console.log('here! ' + newEmployee);
+                                Company.update({_id: req.body.companyID}, {$push: {employees: newEmployee._id}}).exec(
                                     sendJSONresponse(res, 200, {
-                                        'message': 'Employee Successfully Added!'
+                                        'message': 'Employee Successfully Added!',
+                                        'new_emp': newEmployee
                                     }));
                             }
                         });

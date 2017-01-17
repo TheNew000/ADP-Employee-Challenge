@@ -33,11 +33,9 @@
             }
 
             $scope.newEmp = function(){
-                console.log($scope.emp);
                 empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
-                    newEmp.config.data.state = newEmp.config.data.state.abbrev;
-                    $scope.results.push(newEmp.config.data);
+                    $scope.results.push(newEmp.data.new_emp);
                 });
             }
 
@@ -71,38 +69,10 @@
             $scope.deleteContact = function (index){
                 var destroyContact = this.user;
                 empService.deleteEmp(destroyContact, function(deadEmp){
-                    console.log(deadEmp);
                     $scope.results.splice(index, 1);
                 })
             }
-            
-            // $scope.saveField = function(index) {
-            //     if ($scope.editing !== false) {
-            //         $scope.appkeys[$scope.editing] = $scope.newField;
-            //         $scope.editing = false;
-            //     }       
-            // };
-            
-            // $scope.cancel = function(index) {
-            //     if ($scope.editing !== false) {
-            //         $scope.appkeys[$scope.editing] = $scope.newField;
-            //         $scope.editing = false;
-            //     }       
-            // };
 
-            // $scope.getUsers = () => {
-            //    userService.getUsers({userInput: $scope.userInput}, (data) => {
-            //      $scope.results = data;
-            //    }, () => {
-            //      // This is the error callback and it would be best if you wrote something for this.
-            //    });
-            //  }
-            // $scope.getUsers = () => {
-            //     // Here we make the first call which passes the input from the user to the service
-            //     userService.findUsers($scope.userInput);
-            //     // With this function we retrieve the array which was populated by the previous call and give it to scope for use in populating the DOM
-            //     $scope.results = userService.getUsers();
-            // };
         }]);
 })();
 
