@@ -2,7 +2,7 @@
 <div ng-hide="$parent.editEmployee">
     <h2><span class="grey-font">{{$ctrl.index}}.</span>  {{$ctrl.user.empName}}</h2>
     <div class="col-md-3">
-        <button ng-click="$parent.showEditForm()" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button ng-click="$parent.showEditForm($ctrl.index - 1)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
         <button class="btn btn-danger btn-xs" ng-click="$parent.deleteContact($ctrl.index - 1)"><span class="glyphicon glyphicon-trash"></span></button>
     </div>
     <div class="caption col-md-8">
@@ -48,72 +48,3 @@
         </div>
     </div>
 </div>
-
-<form ng-submit="$parent.editEmp($parent.$index)" ng-show="$parent.editEmployee" name="createEmpForm">
-    <h3 class="col-xs-offset-5">Edit Employee</h3>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="empName">Full Name:</label>
-                <input type="text" class="form-control" name="empName" ng-pattern="/^[a-zA-Z_\s]*$/" maxlength="35" minlength="4" title="Please do not include any special characters!" ng-model="$ctrl.user.empName" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="department">Department:</label>
-                <input type="text" name="department" minlength="2" maxlength="30" ng-pattern="/^[a-zA-Z0-9_\s]*$/" class="form-control" ng-model="$ctrl.user.department" required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" name="title" ng-pattern="/^[a-zA-Z0-9_\s]*$/" minlength="3" maxlength="30" class="form-control" ng-model="$ctrl.user.title" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="address" >Street Address:</label>
-                <input type="text" name="address" minlength="5" maxlength="40" ng-pattern="/^[a-zA-Z0-9_\s]*$/" class="form-control" ng-model="$ctrl.user.address" required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input name="city" type="text" ng-pattern="/^[a-zA-Z0-9_\s]*$/" ng-model="$ctrl.user.city" ng-minlength="3" ng-maxlength="30" class="form-control" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="state">State:</label>
-                <select ng-options="state.abbrev for state in $parent.states" ng-model="$parent.selectedOption" class="form-control" required></select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="zipCode">Zipcode:</label>
-                <input type="text" name="zipCode" minlength="5" maxlength="15" class="form-control" ng-model="$ctrl.user.zipCode" ng-pattern="/^[0-9_\s]*$/" required>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" name="phoneNumber" minlength="10" maxlength="20" class="form-control" ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/" ng-model="$ctrl.user.phoneNumber" required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" ng-model="$ctrl.user.email" ng-pattern="/^.+@.+\..+$/" ng-minlength="10" class="form-control" ng-maxlength="100" required>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-lg black-btn yellow-font btn-block" type="submit">Update Employee</button>
-</form>

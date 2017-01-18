@@ -36,6 +36,7 @@
                 empService.newEmp($scope.emp, function(newEmp){
                     $scope.emp = {};
                     $scope.results.push(newEmp.data.new_emp);
+                    $scope.salutation = newEmp.data.message;
                 });
             }
 
@@ -43,33 +44,28 @@
                 empService.findEmp({userInput: $scope.userInput}, function(emps){
                     $scope.userInput = '';
                     $scope.results = emps.data;
+                    console.log(emps);
+                    $scope.salutation = "Successfully located " + emps.data.length + " employees which match: '" + emps.config.data.userInput + "'";
                 });
             }
 
             $scope.showEditForm = function(index){
-                this.editEmployee = true;
+                $scope.editEmployeeForm = this.user;
+                $scope.empIndex = index;
+                $scope.editEmployee = true;
+                console.log($scope.empIndex);
                 var userState = this.user.state;
                 function findState(state){
                     return state.abbrev === userState;
                 }
-
                 $scope.selectedOption = $scope.states.find(findState);
-            }
-
-            $scope.editEmp = function(index){
-                this.editEmployee = false;
-                var editedEmp = this.user;
-                console.log(editedEmp);
-                empService.editEmp(editedEmp, function(emp){
-                    console.log(emp);
-                    $scope.results[index] = editedEmp;
-                });
             }
 
             $scope.deleteContact = function (index){
                 var destroyContact = this.user;
                 empService.deleteEmp(destroyContact, function(deadEmp){
                     $scope.results.splice(index, 1);
+                    $scope.salutation = deadEmp.data.message;
                 })
             }
 

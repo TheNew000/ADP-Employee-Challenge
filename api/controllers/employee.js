@@ -218,7 +218,7 @@ module.exports.editEmp = function (req, res) {
         }
     }).exec(
         sendJSONresponse(res, 200, {
-            "message": "Employee was successfully updated!"
+            message: "Your employee: " + req.body.empName + " was successfully updated!"
         })
     );
 };

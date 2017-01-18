@@ -108,6 +108,7 @@
         </div>
     </div>
     <div class="col-md-7 right">
+        <edit-user-card emp-edit="editEmployeeForm" emp-index="empIndex" ng-show="editEmployee"></edit-user-card>    
         <div class="row" ng-repeat="user in results track by $index">
             <user-card user="user" index="{{$index + 1}}"></user-card>
         </div>
@@ -124,6 +125,7 @@
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/services/emp.service.js"></script>
 <script type="text/javascript" src="js/components/user-card.js"></script>
+<script type="text/javascript" src="js/components/edit-user-card.js"></script>
 <script type="text/javascript" src="js/controllers/main.controller.js"></script>
 </body>
 </html>
