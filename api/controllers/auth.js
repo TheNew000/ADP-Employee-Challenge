@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Company = mongoose.model('Company');
 var Manager = mongoose.model('Manager');
 var validator = require('../utils/validate');
+var bcrypt = require('bcrypt-nodejs');
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
@@ -102,28 +103,37 @@ module.exports.login = function (req, res) {
         sendJSONresponse(res, 400, {
             "message": "All fields required"
         });
-    } else if (req.body.password != 'hambone') {
-        sendJSONresponse(res, 400, {
-            "message": "Invalid Password"
-        });
     } else {
-        Manager.find({'userName': req.body.userName}, function (err, user){
+        Manager.findOne({'userName': req.body.userName}, function (err, user){
+            console.log("User: " + user);
             if (err){
                 sendJSONresponse(res, 500, {
                     "message": "Server Error Nooooo!!!"
                 });
-            } else if (user.length === 0){
-                sendJSONresponse(res, 400, {
+            } else if (user === null){
+                sendJSONresponse(res, 401, {
                     'message': 'Please check your username!',
                     'user': user
                 });
             }else{
-                sendJSONresponse(res, 200, {
-                    'message': 'Welcome Back',
-                    'user': user
+                bcrypt.compare(req.body.password, user.hash, function(err, success) {
+                    if (err){
+                        console.log("error: " + err);
+                    }else{
+                        if(success){
+                            sendJSONresponse(res, 200, {
+                                'message': 'Welcome Back',
+                                'user': user
+                            });
+                        }else{
+                            sendJSONresponse(res, 401, {
+                                "message": "Incorrect password please check again!!!"
+                            });
+                        }
+                    }
                 });
+                
             }
         });
     }
 };
-

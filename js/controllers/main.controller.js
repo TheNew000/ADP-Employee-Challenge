@@ -26,9 +26,9 @@
                             console.log(emps.data[0].employees);
                         });
                     }
-                    $scope.emp.companyID = manager.data.user[0].comp_ID;
+                    $scope.emp.companyID = manager.data.user.comp_ID;
                     console.log($scope.emp.companyID);
-                    $scope.salutation = manager.data.message + ', ' + manager.data.user[0].userName + '!!!';
+                    $scope.salutation = manager.data.message + ', ' + manager.data.user.userName + '!!!';
                 });
             }
 

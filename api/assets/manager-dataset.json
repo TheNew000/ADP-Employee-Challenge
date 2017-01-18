@@ -4,5 +4,6 @@
     "userName": "thenew000",
     "fullName": "Daniel Arango",
     "email": "danny@dannyarango.com",
-    "password": "hambone"
+    "salt": "$2a$10$BECCGrdRV3Sap4bsho1iBu",
+    "hash": "$2a$10$BECCGrdRV3Sap4bsho1iBuiYAN7JY5cRY0we6bQC5TIEZUKd4QEJa"
 }
